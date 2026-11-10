@@ -1,9 +1,14 @@
 // thoughts - Progressive Web App Service Worker
-const CACHE_NAME = 'thoughts-app-v1';
+const CACHE_NAME = 'thoughts-app-v2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/icon-maskable-192.png',
+  '/icon-maskable-512.png',
+  '/favicon-32x32.png',
   '/icon.svg'
 ];
 
