@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-sand: #FAF8F5;
+  --bg-sidebar: #F6F4EE;
+  --border-subtle: #E8E4DA;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-sand);
+  color: #2B2824;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Explicit Bold & Italic Typography styling */
+b, strong {
+  font-weight: 700 !important;
+  color: #1A2B25;
+}
+
+i, em, [style*="font-style: italic"], .italic {
+  font-style: italic !important;
+}
+
+/* Editorial Content Styling */
+.note-content-editor {
+  outline: none;
+  min-height: 240px;
+  font-style: normal !important;
+}
+
+.note-content-editor p {
+  margin-bottom: 1.25rem;
+  font-style: normal;
+}
+
+.note-content-editor b,
+.note-content-editor strong {
+  font-weight: 700 !important;
+  color: #1A2B25;
+}
+
+.note-content-editor i,
+.note-content-editor em,
+.note-content-editor [style*="font-style: italic"] {
+  font-style: italic !important;
+}
+
+.note-content-editor blockquote {
+  border-left: 2px solid #CCC5B4;
+  padding-left: 1.25rem;
+  margin: 1.5rem 0;
+  font-style: italic !important;
+  color: #4A443C;
+}
+
+.note-content-editor ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+.note-content-editor ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin: 0.75rem 0;
+}
+
+/* Table styling in editor & preview */
+.note-content-editor .table-wrapper {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+.note-content-editor table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  border: 1px solid #E8E4DA;
+  background-color: #FAF8F5;
+  margin: 0.5rem 0;
+}
+
+.note-content-editor th,
+.note-content-editor td {
+  border: 1px solid #E8E4DA;
+  padding: 8px 14px;
+  text-align: left;
+  vertical-align: top;
+  min-width: 80px;
+}
+
+.note-content-editor th {
+  background-color: #F3EFE6;
+  font-weight: 600;
+  color: #2B2824;
+}
+
+.note-content-editor td {
+  color: #4A443C;
+}
+
+.note-content-editor tr:hover td {
+  background-color: rgba(243, 239, 230, 0.4);
+}
+
+.note-content-editor p {
+  margin-bottom: 1.25rem;
+}
+
+.note-content-editor:empty:before {
+  content: attr(data-placeholder);
+  color: #CCC5B4;
+  pointer-events: none;
+  display: block;
+}
+
+/* Custom editorial selection */
+::selection {
+  background: #E5DFD3;
+  color: #1A2B25;
+}
+
+/* Custom minimalist scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9D3C5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #BBB4A3;
+}
+
+/* Smooth keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, 16px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* Distraction-Free Quiet Mode */
+.quiet-mode header {
+  opacity: 0.15;
+  transition: opacity 0.3s ease;
+}
+.quiet-mode header:hover {
+  opacity: 1;
+}
+
+* {
+  box-sizing: border-box;
+}
