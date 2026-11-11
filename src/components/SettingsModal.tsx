@@ -54,30 +54,30 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
-      <div className="w-full max-w-lg bg-[#FAF8F5] border border-[#E8E4DA] rounded-2xl shadow-elevation p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
+      <div className="w-full max-w-lg bg-[#FAF8F5] border border-[#E8E4DA] rounded-2xl shadow-elevation p-5 sm:p-8 relative max-h-[90vh] overflow-y-auto">
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EAE6DC] rounded-full transition-colors"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EAE6DC] active:scale-95 rounded-full transition-all min-h-[38px] min-w-[38px] flex items-center justify-center"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-[#233831] text-white flex items-center justify-center shadow-subtle">
+        <div className="flex items-center gap-3 mb-5 sm:mb-6">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#233831] text-white flex items-center justify-center shadow-subtle shrink-0">
             <svg className="w-5 h-5 fill-current text-white" viewBox="0 0 24 24">
               <path d="M12 0C12 7.07 16.93 12 24 12C16.93 12 12 16.93 12 24C12 16.93 7.07 12 0 12C7.07 12 12 7.07 12 0Z" />
             </svg>
           </div>
           <div>
-            <h2 className="font-serif text-2xl font-normal text-[#2B2824]">thoughts Settings</h2>
+            <h2 className="font-serif text-xl sm:text-2xl font-normal text-[#2B2824]">thoughts Settings</h2>
           </div>
         </div>
 
         {/* Section: PIN Management */}
-        <div className="bg-white/80 border border-[#E8E4DA] rounded-xl p-5 mb-5 shadow-subtle">
+        <div className="bg-white/80 border border-[#E8E4DA] rounded-xl p-4 sm:p-5 mb-4 sm:mb-5 shadow-subtle">
           <div className="flex items-center gap-2 mb-3 text-xs font-sans uppercase tracking-wider text-[#2B2824] font-medium">
             <KeyRound className="w-4 h-4 text-[#233831]" />
             <span>Vault Passcode (PIN)</span>
@@ -93,7 +93,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   value={newPin}
                   onChange={(e) => setNewPin(e.target.value.replace(/\D/g, ''))}
                   placeholder="e.g. 5678"
-                  className="w-full px-3 py-2 text-center text-sm tracking-widest font-mono bg-[#FAF8F5] border border-[#E8E4DA] focus:border-[#233831] rounded-lg outline-none"
+                  className="w-full px-3 py-2 text-center text-base sm:text-sm tracking-widest font-mono bg-[#FAF8F5] border border-[#E8E4DA] focus:border-[#233831] rounded-lg outline-none min-h-[40px]"
                 />
               </div>
               <div>
@@ -104,7 +104,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   value={confirmPin}
                   onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ''))}
                   placeholder="Confirm"
-                  className="w-full px-3 py-2 text-center text-sm tracking-widest font-mono bg-[#FAF8F5] border border-[#E8E4DA] focus:border-[#233831] rounded-lg outline-none"
+                  className="w-full px-3 py-2 text-center text-base sm:text-sm tracking-widest font-mono bg-[#FAF8F5] border border-[#E8E4DA] focus:border-[#233831] rounded-lg outline-none min-h-[40px]"
                 />
               </div>
             </div>

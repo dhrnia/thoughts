@@ -36,16 +36,16 @@ export const PropertiesPanel: React.FC<PropertiesPanelProps> = ({
         className="fixed inset-0 bg-black/20 backdrop-blur-xs lg:hidden z-40 transition-opacity"
       />
 
-      <aside className="fixed lg:sticky top-0 right-0 h-screen w-80 bg-[#FAF8F5] border-l border-[#E8E4DA] z-40 flex flex-col justify-between p-6 overflow-y-auto animate-fade-in shadow-elevation lg:shadow-none">
+      <aside className="fixed lg:sticky top-0 right-0 h-[100dvh] w-full max-w-[340px] sm:w-80 bg-[#FAF8F5] border-l border-[#E8E4DA] z-40 flex flex-col justify-between p-5 sm:p-6 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(1.25rem,env(safe-area-inset-top))] overflow-y-auto animate-fade-in shadow-elevation lg:shadow-none">
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DA]/70 mb-6">
+          <div className="flex items-center justify-between pb-4 border-b border-[#E8E4DA]/70 mb-5 sm:mb-6">
             <span className="text-xs font-sans uppercase tracking-widest text-[#8C857B] font-medium">
               Properties
             </span>
             <button
               onClick={onClose}
-              className="p-1 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EAE6DC] rounded-md transition-colors"
+              className="p-2 -mr-1 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EAE6DC] active:scale-95 rounded-lg transition-colors min-h-[38px] min-w-[38px] flex items-center justify-center"
               aria-label="Close properties"
             >
               <X className="w-4 h-4" />

@@ -417,15 +417,15 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({
       {/* Central Reading / Writing Canvas */}
       <div className="flex-1 flex flex-col min-w-0 transition-all duration-300">
         {/* Top Sticky Bar */}
-        <div className="sticky top-0 z-20 bg-[#FAF8F5]/90 backdrop-blur-md border-b border-[#E8E4DA]/70 px-4 sm:px-8 py-3 flex items-center justify-between">
+        <div className="sticky top-0 z-20 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#E8E4DA]/70 px-3 sm:px-8 py-2.5 sm:py-3 pt-[max(0.75rem,env(safe-area-inset-top))] flex items-center justify-between">
           {/* Left: Back to Entries + Save status */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={onBack}
-              className="flex items-center gap-1.5 text-xs sm:text-sm font-sans text-[#5B554D] hover:text-[#2B2824] transition-colors py-1 px-2 -ml-2 rounded-lg hover:bg-[#EAE6DC]"
+              className="flex items-center gap-1.5 text-xs sm:text-sm font-sans text-[#5B554D] hover:text-[#2B2824] active:scale-95 transition-all py-1.5 px-2 -ml-1 rounded-lg hover:bg-[#EAE6DC] min-h-[36px]"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span>All Entries</span>
+              <ArrowLeft className="w-4 h-4 shrink-0" />
+              <span>Back</span>
             </button>
 
             <span className="hidden sm:inline-block text-[#CCC5B4]">•</span>
@@ -434,12 +434,12 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({
             </span>
           </div>
 
-          {/* Right: Vault Badge, Properties (i), Done button */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          {/* Right: Vault Badge, Properties (i), Delete, Done button */}
+          <div className="flex items-center gap-1.5 sm:gap-3">
             {/* Vaulted Badge / Lock Button */}
             <button
               onClick={handleToggleVaultStatus}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-sans font-medium uppercase tracking-wider transition-all border ${
+              className={`flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-sans font-medium uppercase tracking-wider transition-all border active:scale-95 min-h-[34px] ${
                 note.isVaulted
                   ? 'bg-[#233831] text-white border-[#233831] shadow-subtle'
                   : 'bg-white hover:bg-[#EFECE2] text-[#8C857B] border-[#E8E4DA]'
@@ -447,18 +447,20 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({
               title={note.isVaulted ? "Note is PIN locked. Click to modify" : "Click to lock this note with PIN"}
             >
               {note.isVaulted ? <Lock className="w-3 h-3" /> : <Unlock className="w-3 h-3" />}
-              <span>{note.isVaulted ? 'Vaulted' : 'Lock with PIN'}</span>
+              <span className="hidden sm:inline">{note.isVaulted ? 'Vaulted' : 'Lock with PIN'}</span>
+              <span className="sm:hidden">{note.isVaulted ? 'Vaulted' : 'Lock'}</span>
             </button>
 
             {/* Info / Properties Panel Toggle */}
             <button
               onClick={() => setIsPropertiesOpen(!isPropertiesOpen)}
-              className={`p-2 rounded-lg transition-colors border ${
+              className={`p-2 rounded-lg transition-colors border active:scale-95 min-h-[36px] min-w-[36px] flex items-center justify-center ${
                 isPropertiesOpen
                   ? 'bg-[#EAE6DC] text-[#2B2824] border-[#CCC5B4]'
                   : 'text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2] border-transparent'
               }`}
               title="Toggle Document Properties"
+              aria-label="Document properties"
             >
               <Info className="w-4 h-4" />
             </button>
@@ -470,8 +472,9 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({
                   onDeleteNote(note.id);
                 }
               }}
-              className="p-2 text-[#8C857B] hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-colors"
+              className="p-2 text-[#8C857B] hover:text-rose-700 hover:bg-rose-50 active:scale-95 rounded-lg transition-colors min-h-[36px] min-w-[36px] flex items-center justify-center"
               title="Delete Entry"
+              aria-label="Delete entry"
             >
               <Trash2 className="w-4 h-4" />
             </button>
@@ -479,7 +482,7 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({
             {/* Done Button */}
             <button
               onClick={onBack}
-              className="px-4 py-1.5 bg-[#233831] hover:bg-[#1A2B25] active:bg-[#12201B] text-white text-xs font-medium rounded-lg shadow-sm transition-all"
+              className="px-3.5 sm:px-4 py-1.5 bg-[#233831] hover:bg-[#1A2B25] active:scale-95 text-white text-xs font-medium rounded-lg shadow-sm transition-all min-h-[34px] flex items-center"
             >
               Done
             </button>
@@ -487,23 +490,23 @@ export const NoteDetail: React.FC<NoteDetailProps> = ({
         </div>
 
         {/* Note Document Canvas */}
-        <main className="w-full max-w-3xl mx-auto px-6 sm:px-12 py-10 sm:py-16 pb-32">
+        <main className="w-full max-w-3xl mx-auto px-4 sm:px-8 md:px-12 py-6 sm:py-12 pb-36">
           {/* Header Metadata */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#8C857B] font-sans uppercase tracking-widest gap-2 mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between text-xs text-[#8C857B] font-sans uppercase tracking-widest gap-1.5 sm:gap-2 mb-3 sm:mb-4">
             <span className="font-medium text-[#8C857B]">{date}</span>
-            <span className="text-[#8C857B]/80 lowercase first-letter:uppercase tracking-normal font-serif text-sm">
+            <span className="text-[#8C857B]/80 lowercase first-letter:uppercase tracking-normal font-serif text-xs sm:text-sm">
               {location}
             </span>
           </div>
 
           {/* Title */}
-          <div className="mb-8">
+          <div className="mb-6 sm:mb-8">
             <input
               type="text"
               value={title}
               onChange={(e) => handleTitleChange(e.target.value)}
               placeholder="Title of thought..."
-              className="w-full font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-[#2B2824] bg-transparent border-none outline-none tracking-tight placeholder-[#CCC5B4]"
+              className="w-full font-serif text-2xl sm:text-4xl md:text-5xl font-normal text-[#2B2824] bg-transparent border-none outline-none tracking-tight placeholder-[#CCC5B4]"
             />
           </div>
 

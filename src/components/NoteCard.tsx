@@ -24,11 +24,11 @@ export const NoteCard: React.FC<NoteCardProps> = ({
     return (
       <div 
         onClick={() => onRequestUnlock(note)}
-        className="group relative bg-[#FAF8F5] hover:bg-[#F7F4EC] border border-[#E8E4DA] rounded-2xl p-6 transition-all duration-300 hover:shadow-elevation cursor-pointer flex flex-col justify-between min-h-[180px]"
+        className="group relative bg-[#FAF8F5] hover:bg-[#F7F4EC] active:bg-[#F3EFE6] border border-[#E8E4DA] rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-elevation active:scale-[0.99] cursor-pointer flex flex-col justify-between min-h-[170px] sm:min-h-[180px]"
       >
         <div>
           {/* Header */}
-          <div className="flex items-center justify-between text-xs text-[#8C857B] mb-3">
+          <div className="flex items-center justify-between text-xs text-[#8C857B] mb-2.5 sm:mb-3">
             <span className="flex items-center gap-1.5 font-medium tracking-wide">
               <Lock className="w-3.5 h-3.5 text-[#233831]" />
               Vault
@@ -37,7 +37,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
           </div>
 
           {/* Title (Only Title) */}
-          <h3 className="font-serif text-xl font-normal text-[#2B2824] leading-snug mb-2 group-hover:text-[#1A2B25] transition-colors">
+          <h3 className="font-serif text-lg sm:text-xl font-normal text-[#2B2824] leading-snug mb-2 group-hover:text-[#1A2B25] transition-colors">
             {note.title}
           </h3>
         </div>
@@ -49,7 +49,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
               e.stopPropagation();
               onRequestUnlock(note);
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-[#E8E4DA] text-[#2B2824] hover:bg-[#233831] hover:text-white hover:border-[#233831] font-medium text-[11px] shadow-subtle transition-all"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-white border border-[#E8E4DA] text-[#2B2824] hover:bg-[#233831] hover:text-white hover:border-[#233831] active:scale-95 font-medium text-xs shadow-subtle transition-all min-h-[34px]"
           >
             <Lock className="w-3 h-3" />
             <span>Unlock</span>
@@ -64,12 +64,12 @@ export const NoteCard: React.FC<NoteCardProps> = ({
     return (
       <div 
         onClick={() => onSelectNote(note)}
-        className="group bg-white border border-[#E8E4DA] rounded-2xl overflow-hidden shadow-subtle hover:shadow-elevation transition-all duration-300 cursor-pointer flex flex-col justify-between"
+        className="group bg-white active:bg-[#FCFBF9] border border-[#E8E4DA] rounded-2xl overflow-hidden shadow-subtle hover:shadow-elevation active:scale-[0.99] transition-all duration-300 cursor-pointer flex flex-col justify-between"
       >
         <div>
           {/* Image */}
           {note.coverImage && (
-            <div className="h-44 w-full overflow-hidden bg-[#ECE7DD] relative">
+            <div className="h-40 sm:h-44 w-full overflow-hidden bg-[#ECE7DD] relative">
               <img
                 src={note.coverImage}
                 alt={note.title}
@@ -79,7 +79,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
             </div>
           )}
 
-          <div className="p-5">
+          <div className="p-4 sm:p-5">
             <div className="flex items-center justify-between text-[11px] text-[#8C857B] uppercase tracking-wider mb-2">
               <span className="font-medium">Field Note</span>
               <span>{note.metadataChips?.[0] || 'Kyoto Stone'}</span>
@@ -93,11 +93,12 @@ export const NoteCard: React.FC<NoteCardProps> = ({
           </div>
         </div>
 
-        <div className="px-5 pb-4 pt-2 border-t border-[#E8E4DA]/50 flex items-center justify-between text-xs text-[#8C857B]">
+        <div className="px-4 sm:px-5 pb-4 pt-2 border-t border-[#E8E4DA]/50 flex items-center justify-between text-xs text-[#8C857B]">
           <span className="font-serif italic text-xs">{note.quoteAuthor || 'Fragment 04'}</span>
           <button
             onClick={(e) => onToggleSaved(note.id, e)}
-            className="p-1 text-[#8C857B] hover:text-[#233831] transition-colors"
+            className="p-2 -mr-1.5 text-[#8C857B] hover:text-[#233831] active:scale-90 transition-all min-h-[38px] min-w-[38px] flex items-center justify-center"
+            aria-label={note.isSaved ? "Saved" : "Save bookmark"}
           >
             <Bookmark className={`w-4 h-4 ${note.isSaved ? 'fill-[#233831] text-[#233831]' : ''}`} />
           </button>
@@ -110,17 +111,17 @@ export const NoteCard: React.FC<NoteCardProps> = ({
   return (
     <div
       onClick={() => onSelectNote(note)}
-      className="group bg-white hover:bg-[#FCFBF9] border border-[#E8E4DA] rounded-2xl p-6 shadow-subtle hover:shadow-card transition-all duration-300 cursor-pointer flex flex-col justify-between"
+      className="group bg-white hover:bg-[#FCFBF9] active:bg-[#F9F7F2] border border-[#E8E4DA] rounded-2xl p-5 sm:p-6 shadow-subtle hover:shadow-card active:scale-[0.99] transition-all duration-300 cursor-pointer flex flex-col justify-between"
     >
       <div>
         {/* Top line */}
-        <div className="flex items-center justify-between text-xs text-[#8C857B] mb-2.5">
+        <div className="flex items-center justify-between text-xs text-[#8C857B] mb-2 sm:mb-2.5">
           <span className="font-serif">{note.displayDate || note.date}</span>
           <span className="font-mono text-[11px]">{note.wordCount} words</span>
         </div>
 
         {/* Title */}
-        <h3 className="font-serif text-xl font-normal text-[#2B2824] leading-snug mb-2 group-hover:text-[#1A2B25] transition-colors">
+        <h3 className="font-serif text-lg sm:text-xl font-normal text-[#2B2824] leading-snug mb-2 group-hover:text-[#1A2B25] transition-colors">
           {note.title}
         </h3>
 
@@ -140,7 +141,7 @@ export const NoteCard: React.FC<NoteCardProps> = ({
       </div>
 
       {/* Bottom row: Status and Action Link */}
-      <div className="pt-4 border-t border-[#E8E4DA]/60 flex items-center justify-between text-xs text-[#8C857B]">
+      <div className="pt-3.5 sm:pt-4 border-t border-[#E8E4DA]/60 flex items-center justify-between text-xs text-[#8C857B]">
         <div className="flex items-center gap-2">
           {note.isVaulted && (
             <span className="flex items-center gap-1 text-[10px] text-[#233831] bg-[#233831]/10 px-1.5 py-0.5 rounded">
@@ -152,8 +153,9 @@ export const NoteCard: React.FC<NoteCardProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={(e) => onToggleSaved(note.id, e)}
-            className="text-[#8C857B] hover:text-[#233831] transition-colors"
+            className="p-1.5 -ml-1.5 text-[#8C857B] hover:text-[#233831] active:scale-90 transition-all min-h-[36px] min-w-[36px] flex items-center justify-center"
             title={note.isSaved ? "Saved" : "Save bookmark"}
+            aria-label={note.isSaved ? "Saved" : "Save bookmark"}
           >
             <Bookmark className={`w-3.5 h-3.5 ${note.isSaved ? 'fill-[#233831] text-[#233831]' : ''}`} />
           </button>

@@ -48,13 +48,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Main Sidebar */}
       <aside
-        className={`fixed lg:sticky top-0 left-0 z-40 h-screen bg-[#F6F4EE] border-r border-[#E8E4DA] transition-all duration-300 ease-in-out flex flex-col justify-between select-none
+        className={`fixed lg:sticky top-0 left-0 z-40 h-[100dvh] bg-[#F6F4EE] border-r border-[#E8E4DA] transition-all duration-300 ease-in-out flex flex-col justify-between select-none
           ${isCollapsed ? 'lg:w-[72px]' : 'lg:w-[240px]'}
-          ${isMobileOpen ? 'translate-x-0 w-[270px]' : '-translate-x-full lg:translate-x-0'}
+          ${isMobileOpen ? 'translate-x-0 w-[min(280px,85vw)] shadow-2xl' : '-translate-x-full lg:translate-x-0'}
         `}
       >
         {/* Top Header & Brand */}
-        <div className="p-5 pb-3">
+        <div className="p-4 sm:p-5 pb-3 pt-[max(1rem,env(safe-area-inset-top))]">
           <div className="flex items-center justify-between">
             <div 
               onClick={() => {
@@ -91,23 +91,24 @@ export const Sidebar: React.FC<SidebarProps> = ({
               {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
             </button>
 
-            {/* Mobile Close Button */}
+            {/* Mobile Close Button with accessible touch target */}
             <button
               onClick={onCloseMobile}
-              className="lg:hidden p-1.5 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EAE6DC] rounded-lg"
+              className="lg:hidden p-2 -mr-1 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EAE6DC] active:scale-95 rounded-lg min-h-[40px] min-w-[40px] flex items-center justify-center"
+              aria-label="Close sidebar"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* New Entry Button */}
-          <div className="mt-6">
+          <div className="mt-5">
             <button
               onClick={() => {
                 onNewEntry();
                 onCloseMobile();
               }}
-              className={`w-full bg-[#233831] hover:bg-[#1A2B25] active:bg-[#12201B] text-[#FAF8F5] rounded-xl font-medium shadow-sm transition-all duration-200 flex items-center justify-center gap-2.5 
+              className={`w-full bg-[#233831] hover:bg-[#1A2B25] active:scale-[0.98] text-[#FAF8F5] rounded-xl font-medium shadow-sm transition-all duration-200 flex items-center justify-center gap-2.5 
                 ${isCollapsed && !isMobileOpen ? 'h-11 px-0' : 'h-11 px-4'}
               `}
               title="New Entry"
@@ -187,7 +188,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         </div>
 
         {/* Footer: Encrypted Indicator */}
-        <div className="p-4 border-t border-[#E8E4DA]/80">
+        <div className="p-4 pb-[max(1rem,env(safe-area-inset-bottom))] border-t border-[#E8E4DA]/80">
           <div 
             onClick={onOpenSettings}
             className={`flex items-center gap-2 cursor-pointer text-[#8C857B] hover:text-[#2B2824] transition-colors ${

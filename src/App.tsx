@@ -7,6 +7,7 @@ import { JournalGrid } from './components/JournalGrid';
 import { NoteDetail } from './components/NoteDetail';
 import { PinModal } from './components/PinModal';
 import { SettingsModal } from './components/SettingsModal';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import { zenAudio } from './utils/audio';
 
 const STORAGE_NOTES_KEY = 'thoughts_journal_notes_v1';
@@ -205,6 +206,7 @@ export const App: React.FC = () => {
   };
 
   const vaultCount = notes.filter(n => n.isVaulted).length;
+  const savedCount = notes.filter(n => n.isSaved).length;
   const regularNotesCount = notes.filter(n => n.cardType !== 'rhythm' && !n.id.includes('rhythm')).length;
 
   return (
@@ -263,6 +265,18 @@ export const App: React.FC = () => {
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
             onNewNote={handleNewEntry}
+          />
+        )}
+
+        {/* Mobile Bottom Navigation (only when browsing journal on mobile) */}
+        {!selectedNote && (
+          <MobileBottomNav
+            currentTab={currentTab}
+            onSelectTab={setCurrentTab}
+            onNewEntry={handleNewEntry}
+            onOpenSettings={() => setIsSettingsOpen(true)}
+            vaultCount={vaultCount}
+            savedCount={savedCount}
           />
         )}
       </div>

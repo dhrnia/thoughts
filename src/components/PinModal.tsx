@@ -136,9 +136,9 @@ export const PinModal: React.FC<PinModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-sm animate-fade-in">
       <div 
-        className="w-full max-w-sm bg-[#FAF8F5] border border-[#E8E4DA] rounded-2xl shadow-2xl p-7 relative overflow-hidden"
+        className="w-full max-w-[330px] sm:max-w-sm bg-[#FAF8F5] border border-[#E8E4DA] rounded-2xl shadow-2xl p-5 sm:p-7 relative overflow-hidden max-h-[92vh] overflow-y-auto"
         style={{
           boxShadow: '0 20px 45px -10px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.7) inset'
         }}
@@ -149,7 +149,7 @@ export const PinModal: React.FC<PinModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2]/60 rounded-full transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2]/60 active:scale-95 rounded-full transition-all min-h-[38px] min-w-[38px] flex items-center justify-center"
           aria-label="Close"
         >
           <X className="w-4 h-4" />

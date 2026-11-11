@@ -64,18 +64,18 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
   const savedCount = notes.filter(n => n.isSaved).length;
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-8 lg:py-12 animate-fade-in">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-5 sm:py-8 lg:py-12 pb-32 sm:pb-16 animate-fade-in">
       {/* Top Section Header */}
-      <div className="mb-8 md:mb-12">
+      <div className="mb-6 sm:mb-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal text-[#2B2824] tracking-tight">
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-[#2B2824] tracking-tight">
               Journal
             </h1>
-            <p className="text-xs sm:text-sm text-[#8C857B] mt-1.5 font-sans">
+            <p className="text-xs sm:text-sm text-[#8C857B] mt-1 sm:mt-1.5 font-sans">
               {allCount} {allCount === 1 ? 'entry' : 'entries'} recorded <span className="mx-1">•</span> 
               <span className="inline-flex items-center gap-1 text-[#233831] font-medium">
-                <Lock className="w-3 h-3 inline" /> {vaultCount} sealed in private vault
+                <Lock className="w-3 h-3 inline" /> {vaultCount} sealed in vault
               </span>
             </p>
           </div>
@@ -83,34 +83,34 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
       </div>
 
       {/* Search & Filter Toolbar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 pb-4 border-b border-[#E8E4DA]/60">
-        {/* Search bar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 pb-4 border-b border-[#E8E4DA]/60">
+        {/* Search bar - text-base on mobile prevents iOS safari auto-zoom */}
         <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-[#8C857B] absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#8C857B] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search thoughts, places, fragments..."
-            className="w-full pl-10 pr-4 py-2 bg-white/70 hover:bg-white focus:bg-white border border-[#E8E4DA] focus:border-[#233831] rounded-xl text-xs sm:text-sm text-[#2B2824] placeholder-[#A9A08D] outline-none transition-all shadow-subtle"
+            className="w-full pl-10 pr-12 py-2.5 sm:py-2 bg-white/80 hover:bg-white focus:bg-white border border-[#E8E4DA] focus:border-[#233831] rounded-xl text-base sm:text-sm text-[#2B2824] placeholder-[#A9A08D] outline-none transition-all shadow-subtle min-h-[42px] sm:min-h-0"
           />
           {searchQuery && (
             <button
               onClick={() => onSearchChange('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8C857B] hover:text-[#2B2824]"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#8C857B] hover:text-[#2B2824] p-1.5"
             >
               Clear
             </button>
           )}
         </div>
 
-        {/* Filter Tabs */}
-        <div className="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+        {/* Filter Tabs - touch scrollable without clipping */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0">
           <button
             onClick={() => onSelectTab('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-sans whitespace-nowrap transition-all ${
+            className={`px-3.5 py-2 sm:py-1.5 rounded-xl sm:rounded-lg text-xs font-sans whitespace-nowrap active:scale-95 transition-all min-h-[36px] flex items-center ${
               currentTab === 'all'
-                ? 'bg-[#EAE6DC] text-[#2B2824] font-medium'
+                ? 'bg-[#EAE6DC] text-[#2B2824] font-medium shadow-subtle'
                 : 'text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2]/50'
             }`}
           >
@@ -119,9 +119,9 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
 
           <button
             onClick={() => onSelectTab('reflections')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-sans whitespace-nowrap transition-all ${
+            className={`px-3.5 py-2 sm:py-1.5 rounded-xl sm:rounded-lg text-xs font-sans whitespace-nowrap active:scale-95 transition-all min-h-[36px] flex items-center ${
               currentTab === 'reflections'
-                ? 'bg-[#EAE6DC] text-[#2B2824] font-medium'
+                ? 'bg-[#EAE6DC] text-[#2B2824] font-medium shadow-subtle'
                 : 'text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2]/50'
             }`}
           >
@@ -130,9 +130,9 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
 
           <button
             onClick={() => onSelectTab('vault')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-sans whitespace-nowrap flex items-center gap-1.5 transition-all ${
+            className={`px-3.5 py-2 sm:py-1.5 rounded-xl sm:rounded-lg text-xs font-sans whitespace-nowrap flex items-center gap-1.5 active:scale-95 transition-all min-h-[36px] ${
               currentTab === 'vault'
-                ? 'bg-[#233831] text-white font-medium'
+                ? 'bg-[#233831] text-white font-medium shadow-subtle'
                 : 'text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2]/50'
             }`}
           >
@@ -142,9 +142,9 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
 
           <button
             onClick={() => onSelectTab('saved')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-sans whitespace-nowrap transition-all ${
+            className={`px-3.5 py-2 sm:py-1.5 rounded-xl sm:rounded-lg text-xs font-sans whitespace-nowrap active:scale-95 transition-all min-h-[36px] flex items-center ${
               currentTab === 'saved'
-                ? 'bg-[#EAE6DC] text-[#2B2824] font-medium'
+                ? 'bg-[#EAE6DC] text-[#2B2824] font-medium shadow-subtle'
                 : 'text-[#8C857B] hover:text-[#2B2824] hover:bg-[#EFECE2]/50'
             }`}
           >
@@ -155,7 +155,7 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
 
       {/* Cards Grid */}
       {filteredNotes.length === 0 ? (
-        <div className="text-center py-20 bg-white/40 border border-dashed border-[#E8E4DA] rounded-2xl p-8 max-w-lg mx-auto my-6">
+        <div className="text-center py-16 sm:py-20 bg-white/40 border border-dashed border-[#E8E4DA] rounded-2xl p-6 sm:p-8 max-w-lg mx-auto my-6">
           {allCount === 0 ? (
             <>
               <p className="font-serif text-2xl text-[#2B2824] mb-2 font-normal">Your journal is ready</p>
@@ -163,7 +163,7 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
               {onNewNote && (
                 <button
                   onClick={onNewNote}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#233831] text-white text-xs font-sans font-medium tracking-wide shadow-subtle hover:bg-[#1A2B25] transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#233831] text-white text-xs font-sans font-medium tracking-wide shadow-subtle hover:bg-[#1A2B25] active:scale-95 transition-all"
                 >
                   <Plus className="w-4 h-4" />
                   <span>Create First Entry</span>
@@ -186,7 +186,7 @@ export const JournalGrid: React.FC<JournalGridProps> = ({
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 auto-rows-fr">
           {filteredNotes.map((note) => (
             <NoteCard
               key={note.id}
